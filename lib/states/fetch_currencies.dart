@@ -16,10 +16,14 @@ final fetchCurrenciesProvider = FutureProvider.autoDispose<List<String>>((ref) a
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final Map<String, dynamic> currenciesJson = data['data'];
+
+      if (currenciesJson.containsKey('CZK')) {
+        currenciesJson.remove('CZK');
+      }
+      
       return currenciesJson.keys.toList();
     }
   } catch (e) {
-    // Handle errors here, such as network issues or invalid API responses.
     return [];
   }
 

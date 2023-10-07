@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/services/conversion_history_service.dart';
-import 'package:my_app/states/fetch_conversion_history.dart';
-import 'package:my_app/utils/conversion.dart';
+import 'package:currency_converter/services/conversion_history_service.dart';
+import 'package:currency_converter/states/fetch_conversion_history.dart';
+import 'package:currency_converter/utils/conversion.dart';
 
 final saveConversionProvider = FutureProvider.autoDispose.family<void, Conversion>((
   ref,

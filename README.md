@@ -1,4 +1,4 @@
-# my_app
+# currenyConverter
 
 A new Flutter project.
 

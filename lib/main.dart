@@ -1,8 +1,8 @@
+import 'package:currency_converter/screens/history_screen/history.dart';
+import 'package:currency_converter/screens/home_screen/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/screens/history_screen/history.dart';
-import 'package:my_app/screens/home_screen/home.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';

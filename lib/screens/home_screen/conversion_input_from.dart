@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/states/conversion_controller/conversion_controller_provider.dart';
-import 'package:my_app/states/value_from_controller/value_from_controller.dart';
+import 'package:currency_converter/states/conversion_controller/conversion_controller_provider.dart';
+import 'package:currency_converter/states/value_from_controller/value_from_controller.dart';
 
 class ConversionInputFrom extends ConsumerStatefulWidget {
   final List<String> currencies;
@@ -81,6 +81,7 @@ class _ConversionInputFromState extends ConsumerState<ConversionInputFrom> {
                       onChanged: (valueFrom) {
                         conversionController.updateConversionState(
                           valueFrom: valueFrom,
+                          valueTo: 0.0,
                         );
                       },
                     ),

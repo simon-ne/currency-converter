@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/utils/conversion.dart';
+import 'package:currency_converter/utils/conversion.dart';
 
 class ConversionHistoryTile extends StatelessWidget {
   final Conversion conversion;

@@ -1,7 +1,8 @@
+import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_app/states/conversion_controller/conversion_controller_provider.dart';
+import 'package:currency_converter/states/conversion_controller/conversion_controller_provider.dart';
 
 class ConversionInputTo extends StatelessWidget {
   final List<String> currencies;
@@ -38,8 +39,13 @@ class ConversionInputTo extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    currentConversion.valueTo.toStringAsFixed(2),
+                  Countup(
+                    begin: 0,
+                    end: currentConversion.valueTo,
+                    curve: Curves.bounceOut,
+                    precision: 2,
+                    duration: Duration(milliseconds: 350),
+                    separator: ',',
                     style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
@@ -58,6 +64,7 @@ class ConversionInputTo extends StatelessWidget {
                     onChanged: (String? toCurrency) {
                       conversionController.updateConversionState(
                         toCurrency: toCurrency,
+                        valueTo: 0.0,
                       );
                     },
                     icon: SvgPicture.asset('assets/icons/chevron-down.svg'),

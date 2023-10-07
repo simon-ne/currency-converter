@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:my_app/utils/conversion.dart';
+import 'package:currency_converter/utils/conversion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ConversionHistoryService {
@@ -27,7 +27,17 @@ class ConversionHistoryService {
     final List<Conversion> history = jsonList.map((json) {
       return Conversion.fromJson(json);
     }).toList();
-    print(history);
     return history;
+  }
+
+  Future<void> deleteConversionHistory() async {
+    var history = await loadConversionHistory();
+
+    if (history.isEmpty) {
+      return;
+    }
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_key);
   }
 }

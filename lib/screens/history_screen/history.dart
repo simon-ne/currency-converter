@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/screens/history_screen/conversion_history_tile.dart';
-import 'package:my_app/services/conversion_history_service.dart';
-import 'package:my_app/shared/page_title.dart';
-import 'package:my_app/states/fetch_conversion_history.dart';
+import 'package:currency_converter/screens/history_screen/conversion_history_tile.dart';
+import 'package:currency_converter/services/conversion_history_service.dart';
+import 'package:currency_converter/shared/page_title.dart';
+import 'package:currency_converter/states/fetch_conversion_history.dart';
 
 class HistoryScreen extends ConsumerStatefulWidget {
   const HistoryScreen({super.key});
