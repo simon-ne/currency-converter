@@ -1,4 +1,5 @@
 import 'package:currency_converter/states/delete_conversion_history.dart';
+import 'package:currency_converter/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:currency_converter/screens/home_screen/conversion_input_from.dart';
@@ -58,19 +59,18 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              currentCovnersion.valueTo == 0.0 ? Colors.black : Colors.black38,
+                              currentCovnersion.valueTo == 0.0 && currentCovnersion.valueFrom != '' ? Colors.black : Colors.black38,
                           padding: const EdgeInsets.all(16.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         onPressed: () => conversionController.performConversion(
-                          onError: () {
-                            const AlertDialog(
-                              title: Text('AlertDialog Title'),
-                              content: Text('There was an error while converting the currency.'),
-                            );
-                          },
+                          onError: () => const AlertDialog(
+                            title: Text('AlertDialog Title'),
+                            content: Text('There was an error while converting the currency.'),
+                          ),
+                          // },
                           onSuccess: () async {
                             var currentConversion = ref.read(conversionControllerProvider);
                             await ref.read(saveConversionProvider(currentConversion).future);
@@ -94,7 +94,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                           ),
                         ),
                         onPressed: () async {
-                          await ref.read(deleteConversionHistoryProvider.future);
+                          var error = await ref.read(deleteConversionHistoryProvider.future);
+                          var backgroundColor = error == '' ? Colors.black : Colors.red;
+                          var message = error == '' ? 'History has been deleted' : error;
+                          if (context.mounted) {
+                            Helper.displaySnackMessage(context, backgroundColor, message);
+                          }
                         },
                         child: const Text(
                           'Delete history',

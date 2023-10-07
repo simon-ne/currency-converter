@@ -58,32 +58,36 @@ class _ConversionInputFromState extends ConsumerState<ConversionInputFrom> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: 100,
-                    child: TextField(
-                      controller: _valueFromController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '0',
-                        isDense: true,
-                        contentPadding: EdgeInsets.only(
-                          top: 0,
-                          bottom: 4,
-                          left: 0,
-                          right: 0,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 12,
+                      ),
+                      child: TextField(
+                        controller: _valueFromController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: '0',
+                          isDense: true,
+                          contentPadding: EdgeInsets.only(
+                            top: 0,
+                            bottom: 4,
+                            left: 0,
+                            right: 0,
+                          ),
                         ),
+                        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        onChanged: (valueFrom) {
+                          conversionController.updateConversionState(
+                            valueFrom: valueFrom,
+                            valueTo: 0.0,
+                          );
+                        },
                       ),
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      onChanged: (valueFrom) {
-                        conversionController.updateConversionState(
-                          valueFrom: valueFrom,
-                          valueTo: 0.0,
-                        );
-                      },
                     ),
                   ),
                   const Text(

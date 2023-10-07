@@ -39,47 +39,66 @@ class ConversionInputTo extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Countup(
-                    begin: 0,
-                    end: currentConversion.valueTo,
-                    curve: Curves.bounceOut,
-                    precision: 2,
-                    duration: Duration(milliseconds: 350),
-                    separator: ',',
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8,
+                            ),
+                            child: Countup(
+                              begin: 0,
+                              end: currentConversion.valueTo,
+                              curve: Curves.bounceOut,
+                              precision: 2,
+                              duration: const Duration(milliseconds: 350),
+                              separator: ',',
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  DropdownButton<String>(
-                    isDense: true,
-                    underline: Container(),
+                  Padding(
                     padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
+                      left: 12,
                     ),
-                    value: currentConversion.toCurrency,
-                    onChanged: (String? toCurrency) {
-                      conversionController.updateConversionState(
-                        toCurrency: toCurrency,
-                        valueTo: 0.0,
-                      );
-                    },
-                    icon: SvgPicture.asset('assets/icons/chevron-down.svg'),
-                    items: currencies.map((String value) {
-                      return DropdownMenuItem(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
+                    child: DropdownButton<String>(
+                      isDense: true,
+                      underline: Container(),
+                      padding: const EdgeInsets.only(
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                      ),
+                      value: currentConversion.toCurrency,
+                      onChanged: (String? toCurrency) {
+                        conversionController.updateConversionState(
+                          toCurrency: toCurrency,
+                          valueTo: 0.0,
+                        );
+                      },
+                      icon: SvgPicture.asset('assets/icons/chevron-down.svg'),
+                      items: currencies.map((String value) {
+                        return DropdownMenuItem(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ],
               ),

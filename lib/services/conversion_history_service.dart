@@ -30,14 +30,16 @@ class ConversionHistoryService {
     return history;
   }
 
-  Future<void> deleteConversionHistory() async {
+  Future<String> deleteConversionHistory() async {
     var history = await loadConversionHistory();
 
     if (history.isEmpty) {
-      return;
+      return 'No entries in history.';
     }
 
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_key);
+    var result = await prefs.remove(_key);
+    print("DELETE RESULT: $result");
+    return '';
   }
 }

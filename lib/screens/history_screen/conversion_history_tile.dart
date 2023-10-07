@@ -1,5 +1,3 @@
-// import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:currency_converter/utils/conversion.dart';
@@ -20,39 +18,64 @@ class ConversionHistoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 12
-      ),
+      padding: const EdgeInsets.only(top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             _formatDateTime(conversion.dateTime),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
             ),
           ),
-          SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${conversion.fromCurrency}: ${double.parse(conversion.valueFrom).toStringAsFixed(2)}",
-                style: TextStyle(
-                  fontSize: 18,
+          const SizedBox(height: 6),
+          DefaultTextStyle(
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        conversion.fromCurrency,
+                      ),
+                      Text(
+                        double.parse(conversion.valueFrom).toStringAsFixed(2),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Icon(CupertinoIcons.arrow_right),
-              Text(
-                "${conversion.toCurrency}: ${conversion.valueTo.toStringAsFixed(2)}",
-                style: TextStyle(
-                  fontSize: 18,
+                const Expanded(
+                  flex: 1,
+                  child: Icon(CupertinoIcons.arrow_right),
                 ),
-              ),
-            ],
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        conversion.toCurrency,
+                      ),
+                      Text(
+                        conversion.valueTo.toStringAsFixed(2),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-          SizedBox(height: 12),
-          Divider(
+          const SizedBox(height: 8),
+          const Divider(
             // Add a Divider here
             thickness: 1,
             color: Colors.grey,
