@@ -45,7 +45,7 @@ class ConversionController extends StateNotifier<Conversion> {
       return;
     }
 
-    if (state.valueFrom == '') {
+    if (state.valueFrom == '' || double.tryParse(state.valueFrom) == 0) {
       return;
     }
 

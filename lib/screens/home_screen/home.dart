@@ -1,4 +1,5 @@
 import 'package:currency_converter/states/delete_conversion_history.dart';
+import 'package:currency_converter/utils/conversion.dart';
 import 'package:currency_converter/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,8 +59,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              currentCovnersion.valueTo == 0.0 && currentCovnersion.valueFrom != '' ? Colors.black : Colors.black38,
+                          backgroundColor: _getConversionButtonColor(currentCovnersion),
                           padding: const EdgeInsets.all(16.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -117,5 +117,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Color _getConversionButtonColor(Conversion currentCovnersion) {
+    if (currentCovnersion.valueTo == 0 && currentCovnersion.valueFrom != '' && double.tryParse(currentCovnersion.valueFrom) != 0) {
+      return Colors.black;
+    }
+    return Colors.black38;
   }
 }
